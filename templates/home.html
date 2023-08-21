@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block title %}Home Page{% endblock %}
+{% block content %}
+
+<body>
+    <h1>Pet List</h1>
+    {% for pet in pets %}
+    {% if pet.photo_url != "" %}
+    <img class="img-fluid" src="{{pet.photo_url}}" alt="{{pet.name}} {{pet.species}}">
+    {% endif %}
+    <p><a href="/{{pet.id}}/edit">{{pet.name}}</a>
+        {% if pet.available == True %}
+        is <b>available</b>!
+        {% endif %}
+        {% if pet.available == False %}
+        is not available.
+        {% endif %}</p>
+    {% endfor %}
+    <a href="/add" class="btn btn-primary">Add a Pet</a>
+</body>
+
+{% endblock %}
